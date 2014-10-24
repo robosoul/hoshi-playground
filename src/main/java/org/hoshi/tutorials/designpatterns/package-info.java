@@ -10,6 +10,6 @@
  *       because this pattern creates lots of similar decorators which are sometimes
  *       hard to maintain and distinguish.
  *
- * @author Luka Obradovic (luka@vast.com)
+ * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 package org.hoshi.tutorials.designpatterns;

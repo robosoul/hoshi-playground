@@ -12,4 +12,4 @@
  *
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-package org.hoshi.tutorials.designpatterns;
+package org.hoshi.tutorials.designpatterns.decorators;

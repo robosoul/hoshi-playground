@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class TestPatterns {
     public static final Logger log = LoggerFactory.getLogger(TestPatterns.class);
 
-    public static void main(String[] args) {
-        System.out.println(System.getProperty("user.name"));
+    public static void main(final String[] args) {
+
     }
 }

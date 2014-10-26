@@ -31,4 +31,8 @@ import org.slf4j.LoggerFactory;
  */
 public class ThreadsTest {
     public static final Logger log = LoggerFactory.getLogger(ThreadsTest.class);
+
+    public static void main(String[] args) {
+        // write some demo(s)
+    }
 }

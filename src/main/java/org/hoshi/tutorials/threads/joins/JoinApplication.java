@@ -43,7 +43,7 @@ public class JoinApplication {
         // without following code we could end up with: 0,10,1,2,3,4,5,6,7,8,9
         // here we ENSURE that counter thread finishes before main continues
         try {
-            counter.join(100);
+            counter.join();
         } catch (InterruptedException e) {
 
         }

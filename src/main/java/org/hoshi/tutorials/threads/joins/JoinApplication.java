@@ -45,7 +45,7 @@ public class JoinApplication {
         try {
             counter.join();
         } catch (InterruptedException e) {
-
+            // nothing to do
         }
 
         System.out.println("main: 10");

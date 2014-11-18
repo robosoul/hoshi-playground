@@ -19,6 +19,6 @@
  * When a thread releases an intrinsic lock, a happens-before relationship is
  * established between that action and any subsequent acquisition of the same lock.
  *
- * @author Luka Obradovic (luka@vast.com)
+ * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 package org.hoshi.tutorials.threads.synch;

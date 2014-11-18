@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Demonstrates joining threads using while + isAlive() + sleep()
  *
- * @author Luka Obradovic (luka@vast.com)
+ * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
 public class IsAliveAndWhileApplication {
     public static final Logger log = LoggerFactory.getLogger(

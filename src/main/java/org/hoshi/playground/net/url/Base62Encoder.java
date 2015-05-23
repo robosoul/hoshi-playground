@@ -17,7 +17,7 @@
 package org.hoshi.playground.net.url;
 
 /**
- * Theoretical background
+ * Theoretical background:
  *  You need a Bijective Function f. This is necessary so that you can find a
  *  inverse function g('abc') = 123 for your f(123) = 'abc' function. This means:
  *

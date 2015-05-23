@@ -1,18 +1,18 @@
 /**
  * The MIT License (MIT)
- * <p/>
+ *
  * Copyright (C) 2015 Luka Obradovic.
- * <p/>
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * <p/>
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * <p/>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,55 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.hoshi.playground.collections;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+package org.hoshi.playground.numbers;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public final class ListUtils {
-    public static final Logger log = LoggerFactory.getLogger(ListUtils.class);
+public final class NumberUtils {
+    private static final int FIRST_BIT_MASK = 1;
 
-    private ListUtils() {
+    private NumberUtils() {
         // utility class
     }
 
     /**
-     * Returns true if {@code list} has duplicates.
+     * Returns a string representation of the integer argument as an unsigned
+     * integer in base 2. Returned string has all 32 digits including leading
+     * zeros.
      *
-     * @param list a list to be tested
-     * @return true if {@code list} has duplicates.
+     * @param number an integer to be converted to a string
+     * @return the string representation of the unsigned integer value
+     *         represented by the argument in binary (base 2)
      */
-    public static <T> boolean hasDupes(final List<T> list) {
-        final Set<T> set = new HashSet<>();
+    public static String integerToBinaryString(int number) {
+        String bin = "";
 
-        // Set#add returns false if the set does not change, which
-        // indicates that a duplicate element has been added.
-        for (T e : list) {
-            if (!set.add(e)) {
-                return true;
+        for (int i = 1; i < Integer.SIZE; ++i) {
+            if (i % 8 == 0) {
+                bin = " " + (number & FIRST_BIT_MASK) + bin;
+            } else {
+                bin = (number & FIRST_BIT_MASK) + bin;
             }
+
+            number = number >> 1;
         }
 
-        return true;
-    }
-
-    /**
-     * Removes duplicated elements. Maintains order of elements.
-     *
-     * @param list a list to be purged :)
-     */
-    public static <T> void dedupe(final List<T> list) {
-        final Set<T> set = new LinkedHashSet<>(list);
-
-        list.clear();
-        list.addAll(set);
+        bin = (number & FIRST_BIT_MASK) + bin;
+        return bin;
     }
 }

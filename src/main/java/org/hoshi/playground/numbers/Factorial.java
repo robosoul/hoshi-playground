@@ -21,55 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.hoshi.playground.collections;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+package org.hoshi.playground.numbers;
 
 /**
  * @author Luka Obradovic (obradovic.luka.83@gmail.com)
  */
-public final class ListUtils {
-    public static final Logger log = LoggerFactory.getLogger(ListUtils.class);
-
-    private ListUtils() {
+public final class Factorial {
+    private Factorial() {
         // utility class
     }
 
-    /**
-     * Returns true if {@code list} has duplicates.
-     *
-     * @param list a list to be tested
-     * @return true if {@code list} has duplicates.
-     */
-    public static <T> boolean hasDupes(final List<T> list) {
-        final Set<T> set = new HashSet<>();
+    public static long iterative(final int n) {
+        long f = 1L;
 
-        // Set#add returns false if the set does not change, which
-        // indicates that a duplicate element has been added.
-        for (T e : list) {
-            if (!set.add(e)) {
-                return true;
-            }
+        for (long i = 2; i <= n; i++) {
+            f *= i;
         }
 
-        return true;
+        return f;
     }
 
-    /**
-     * Removes duplicated elements. Maintains order of elements.
-     *
-     * @param list a list to be purged :)
-     */
-    public static <T> void dedupe(final List<T> list) {
-        final Set<T> set = new LinkedHashSet<>(list);
+    public static long recursive(final int n) {
+        if (n < 2) {
+            return 1;
+        }
 
-        list.clear();
-        list.addAll(set);
+        return n * recursive(n - 1);
+    }
+
+    public static void main(final String[] args) {
+        System.out.println(Factorial.recursive(10));
     }
 }

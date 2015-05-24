@@ -40,12 +40,37 @@ public final class NumberUtils {
      *
      * @param number an integer to be converted to a string
      * @return the string representation of the unsigned integer value
-     *         represented by the argument in binary (base 2)
+     *         represented in binary (base 2)
      */
-    public static String integerToBinaryString(int number) {
+    public static String toBinaryString(int number) {
         String bin = "";
 
         for (int i = 1; i < Integer.SIZE; ++i) {
+            if (i % 8 == 0) {
+                bin = " " + (number & FIRST_BIT_MASK) + bin;
+            } else {
+                bin = (number & FIRST_BIT_MASK) + bin;
+            }
+
+            number = number >> 1;
+        }
+
+        bin = (number & FIRST_BIT_MASK) + bin;
+        return bin;
+    }
+
+    /**
+     * Returns a string representation of the long argument as an unsigned long
+     * in base 2. Returned string has all 64 digits including leading zeros.
+     *
+     * @param number an long to be converted to a string
+     * @return the string representation of the unsigned long value
+     *         represented in binary (base 2)
+     */
+    public static String toBinaryString(long number) {
+        String bin = "";
+
+        for (int i = 1; i < Long.SIZE; ++i) {
             if (i % 8 == 0) {
                 bin = " " + (number & FIRST_BIT_MASK) + bin;
             } else {

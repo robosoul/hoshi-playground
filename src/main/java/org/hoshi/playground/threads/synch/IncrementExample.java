@@ -34,12 +34,14 @@ public class IncrementExample {
             LoggerFactory.getLogger(IncrementExample.class);
 
     public static void main(String[] args) {
-        final Count c = new BadCount(0);
+        final Counter c = new BadCounter(0);
         //final Count c = new ThreadSafeCount(0);
 
+        final int n = 1000;
+
         // create thread with starting value
-        final Thread inc1 = new Thread(new IncrementingWorker(c));
-        final Thread inc2 = new Thread(new IncrementingWorker(c));
+        final Thread inc1 = new Thread(new IncrementingWorker(c, n));
+        final Thread inc2 = new Thread(new IncrementingWorker(c, n));
 
         // let's roll!
         inc1.start();
@@ -54,18 +56,19 @@ public class IncrementExample {
         }
 
         // number should be 2 x 10000
-        System.out.println("And the count is = " + c);
+        System.out.println("Expected count = " + 2 * n);
+        System.out.println("Actual count   = " + c);
 
     }
 
-    private interface Count {
+    interface Counter {
         void increment();
     }
 
-    private static class BadCount implements Count {
+    static class BadCounter implements Counter {
         private int count;
 
-        BadCount(final int value) {
+        BadCounter(final int value) {
             this.count = value;
         }
 
@@ -85,14 +88,14 @@ public class IncrementExample {
 
         @Override
         public String toString() {
-            return count + "";
+            return String.valueOf(count);
         }
     }
 
-    private static class ThreadSafeCount implements Count {
+    static class ThreadSafeCounter implements Counter {
         private int count;
 
-        ThreadSafeCount(final int value) {
+        ThreadSafeCounter(final int value) {
             this.count = value;
         }
 
@@ -103,21 +106,23 @@ public class IncrementExample {
 
         @Override
         public String toString() {
-            return count + "";
+            return String.valueOf(count);
         }
     }
 
-    private static class IncrementingWorker implements Runnable {
-        private Count count;
+    static class IncrementingWorker implements Runnable {
+        private final Counter counter;
+        private final int n;
 
-        public IncrementingWorker(final Count count) {
-            this.count = count;
+        public IncrementingWorker(final Counter count, int n) {
+            this.counter = count;
+            this.n = n;
         }
 
         @Override
         public void run() {
-            for (int i = 0; i < 10000; ++i) {
-                count.increment();
+            for (int i = 0; i < n; ++i) {
+                counter.increment();
             }
         }
     }

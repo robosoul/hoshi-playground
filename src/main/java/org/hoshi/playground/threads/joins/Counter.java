@@ -38,7 +38,7 @@ public class Counter implements Runnable {
     @Override
     public void run() {
         for (int i = start; i <= end; ++i) {
-            System.out.println("cntr: " + i);
+            System.out.println("counter: " + i);
 
             try {
                 Thread.sleep(10);

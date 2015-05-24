@@ -39,7 +39,7 @@ public final class EvenRandomNumberGenerator {
     private static final Random RNG = new Random();
 
     /**
-     * random & -2 (11111111 11111111 11111111 11111110 )resets '1' on the first position
+     * random & -2 (11111111 11111111 11111111 11111110) resets '1' on the first position
      *
      * @return random even number
      */

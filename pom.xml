@@ -6,14 +6,22 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.hoshi</groupId>
-  <artifactId>tutorials</artifactId>
+  <artifactId>playground</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>hoshi-playground</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

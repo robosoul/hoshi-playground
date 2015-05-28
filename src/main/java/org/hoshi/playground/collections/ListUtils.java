@@ -37,12 +37,16 @@ public final class ListUtils {
     }
 
     /**
-     * Returns true if {@code list} has duplicates.
+     * Returns true if {@code list} has duplicates. Returns false if list is null.
      *
      * @param list a list to be tested
      * @return true if {@code list} has duplicates.
      */
     public static <T> boolean hasDupes(final List<T> list) {
+        if (list == null) {
+            return false;
+        }
+
         final Set<T> set = new HashSet<>();
 
         // Set#add returns false if the set does not change, which
@@ -57,14 +61,16 @@ public final class ListUtils {
     }
 
     /**
-     * Removes duplicated elements. Maintains order of elements.
+     * Removes duplicated elements. Maintains order of elements. Null safe;
      *
      * @param list a list to be purged :)
      */
     public static <T> void dedupe(final List<T> list) {
-        final Set<T> set = new LinkedHashSet<>(list);
+        if (list != null) {
+            final Set<T> set = new LinkedHashSet<>(list);
 
-        list.clear();
-        list.addAll(set);
+            list.clear();
+            list.addAll(set);
+        }
     }
 }
